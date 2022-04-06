@@ -1,8 +1,9 @@
 package dto
 
 import (
-	"github.com/go-playground/validator/v10"
 	"strings"
+
+	"github.com/go-playground/validator/v10"
 )
 
 // UserListSearchMapping - define search query keys in user list page

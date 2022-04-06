@@ -44,7 +44,6 @@ insert  into `casbin_rule`(`id`,`p_type`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`) values
 (18,'p','系统设置','/auth-system/domain:add','*','root','',''),
 (19,'p','系统设置','/auth-system/domain:edit','*','root','',''),
 (20,'p','系统设置','/auth-system/domain:del','*','root','',''),
-
 (21,'p','权限管理','/auth-system/menu:show','*','root','',''),
 (22,'p','权限管理','/auth-system/menu:add','*','root','',''),
 (23,'p','权限管理','/auth-system/menu:edit','*','root','',''),
@@ -53,7 +52,6 @@ insert  into `casbin_rule`(`id`,`p_type`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`) values
 (26,'p','权限管理','/auth-system/domain:add','*','root','',''),
 (27,'p','权限管理','/auth-system/domain:edit','*','root','',''),
 (28,'p','权限管理','/auth-system/domain:del','*','root','',''),
-
 (29,'p','超级管理员','/permission/user:show','*','root','',''),
 (30,'p','超级管理员','/permission/user:add','*','root','',''),
 (31,'p','超级管理员','/permission/user:edit','*','root','',''),
@@ -74,18 +72,12 @@ insert  into `casbin_rule`(`id`,`p_type`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`) values
 (67,'p','超级管理员','/auth-system/dataPerm:edit','*','root','',''),
 (68,'p','超级管理员','/auth-system/dataPerm:del','*','root','',''),
 (69,'p','超级管理员','/auth-system/dataPerm:show','*','root','',''),
-
 (70,'g','2','超级管理员','','','',''),
-(71,'g','1','超级管理员','','','',''),
-
 (72,'p','超级管理员','/auth-system/menu:show','*','root','',''),
 (73,'p','超级管理员','/auth-system/menu:add','*','root','',''),
 (74,'p','超级管理员','/auth-system/menu:edit','*','root','',''),
 (75,'p','超级管理员','/auth-system/menu:del','*','root','',''),
-
-(76,'g','2','crawlnovel管理员','','','',''),
 (83,'g','2','日志管理','','','',''),
-
 (84,'p','日志管理','/logs/log_login:show','*','root','',''),
 (85,'p','日志管理','/logs/log_login:add','*','root','',''),
 (86,'p','日志管理','/logs/log_login:edit','*','root','',''),
@@ -94,7 +86,6 @@ insert  into `casbin_rule`(`id`,`p_type`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`) values
 (89,'p','日志管理','/logs/log_operation:add','*','root','',''),
 (90,'p','日志管理','/logs/log_operation:edit','*','root','',''),
 (91,'p','日志管理','/logs/log_operation:del','*','root','',''),
-
 (92,'p','超级管理员','/logs/log_login:show','*','root','',''),
 (93,'p','超级管理员','/logs/log_login:add','*','root','',''),
 (94,'p','超级管理员','/logs/log_login:edit','*','root','',''),
@@ -106,6 +97,8 @@ insert  into `casbin_rule`(`id`,`p_type`,`v0`,`v1`,`v2`,`v3`,`v4`,`v5`) values
 (101,'p','超级管理员','/setting/auth:show','*','root','',''),
 (102,'p','超级管理员','/setting/ldap:show','*','root','',''),
 (103,'p','超级管理员','/setting/auth:sync','*','root','','');
+
+
 
 
 /*Table structure for table `data_perm` */
@@ -353,9 +346,13 @@ insert  into `menu`(`id`,`parent_id`,`domain_id`,`name`,`url`,`perms`,`alias`,`m
 (101,100,4,'浏览','','/auth-system/domain:show','get@/v1/domains,get@/v1/domains/:id',2,'',1,'2018-12-29 16:15:11','2018-12-29 16:15:11'),
 (102,100,4,'添加','','/auth-system/domain:add','post@/v1/domains',2,'',2,'2018-12-29 16:15:11','2018-12-29 16:15:11'),
 (103,100,4,'修改','','/auth-system/domain:edit','put@/v1/domains/:id',2,'',3,'2018-12-29 16:15:11','2018-12-29 16:15:11'),
-(104,100,4,'删除','','/auth-system/domain:del','delete@/v1/domains/:id',2,'',4,'2018-12-29 16:15:11','2018-12-29 16:15:11');
+(104,100,4,'删除','','/auth-system/domain:del','delete@/v1/domains/:id',2,'',4,'2018-12-29 16:15:11','2018-12-29 16:15:11'),
 
-
+(105,94,4,'数据权限','/auth-system/dataPerm','',NULL,1,'component',1,'2019-07-08 10:53:55','2019-07-08 10:53:55'),
+(106,105,4,'添加','','/auth-system/dataPerm:add','post@/v1/datas',2,'',1,'2019-07-08 02:54:28','2019-07-08 02:54:28'),
+(107,105,4,'编辑','','/auth-system/dataPerm:edit','put@/v1/datas/:id',2,'',1,'2019-07-08 02:54:58','2019-07-08 02:54:58'),
+(108,105,4,'删除','','/auth-system/dataPerm:del','delete@/v1/datas/:id',2,'',1,'2019-07-08 02:55:15','2019-07-08 02:55:15'),
+(109,105,4,'浏览','','/auth-system/dataPerm:show','get@/v1/datas,get@/v1/datas/:id',2,'',1,'2019-07-08 02:55:33','2019-07-08 02:55:33');
 
 
 /*Table structure for table `menu_perm_alias` */
@@ -454,7 +451,12 @@ insert  into `menu_perm_alias`(`id`,`perms`,`alias`,`domain_id`,`created_time`,`
 (104,'/auth-system/domain:show','get@/v1/domains/:id',4,1572605085,1572605085),
 (105,'/auth-system/domain:add','post@/v1/domains',4,1572605085,1572605085),
 (106,'/auth-system/domain:edit','put@/v1/domains/:id',4,1572605085,1572605085),
-(107,'/auth-system/domain:del','delete@/v1/domains/:id',4,1572605085,1572605085);
+(107,'/auth-system/domain:del','delete@/v1/domains/:id',4,1572605085,1572605085),
+(108,'/auth-system/dataPerm:add','post@/v1/datas',4,1572605085,1572605085),
+(109,'/auth-system/dataPerm:edit','put@/v1/datas/:id',4,1572605085,1572605085),
+(110,'/auth-system/dataPerm:del','delete@/v1/datas/:id',4,1572605085,1572605085),
+(111,'/auth-system/dataPerm:show','get@/v1/datas',4,1572605085,1572605085),
+(112,'/auth-system/dataPerm:show','get@/v1/datas/:id',4,1572605085,1572605085);
 
 
 

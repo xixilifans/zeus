@@ -15,7 +15,6 @@ var (
 		PreRun: func(cmd *cobra.Command, args []string) {
 			usage()
 			setup()
-			run()
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return run()
@@ -24,7 +23,8 @@ var (
 )
 
 func init() {
-	AuthCmd.PersistenFlags().StringVarP(&datacfg, "datacfg", "d", "./data/auth.json")
+	AuthCmd.PersistentFlags().StringVarP(&datacfg, "datacfg", "d", "./data/auth.json", "start server with provided configuration file")
+
 }
 
 func usage() {

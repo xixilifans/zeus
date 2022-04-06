@@ -3300,7 +3300,7 @@
   "version" "1.8.1"
 
 "eve@git://github.com/adobe-webplatform/eve.git#eef80ed":
-  "integrity" "sha512-8XU3JbCv1qSdZ1G3VLQTo0axL5/BWVyE2LjosTyv/TfpShLRr6A20JnL+xi7x3x8FhdenLEEPpJnTRLo/NSI6g=="
+  "integrity" "sha512-P/ydUfhhH9vwygYRCfuI/f3MPyl4auaJDm81Bykn8WsTUZRP4RVO+AJxrz9Db++iylKKKwMN3wLmgtZ0JwsZJg=="
   "resolved" "git+ssh://git@github.com/adobe-webplatform/eve.git"
   "version" "0.5.4"
 
@@ -7281,7 +7281,7 @@
   "version" "1.2.1"
 
 "raphael@https://github.com/nhn/raphael.git#2.2.0-c":
-  "integrity" "sha512-KfNROhJgT+ay+TyiJr1jTmZwb16d/I/vSjGKV9eGWlQmDV8r5DkR7mwrT8B3Q7bEL8ZMBTFLCglqB+hYsm4YgA=="
+  "integrity" "sha512-CjUl/5CNoDGRlUvvTVHXJmraN1f3uIPpmWUyWS1tQJpbxGPDeKaE6dQymbTAfk6fBrC1yiiCLd8m5UpEHsJbOw=="
   "resolved" "git+ssh://git@github.com/nhn/raphael.git"
   "version" "2.1.4b"
   dependencies:
@@ -9265,6 +9265,13 @@
   "integrity" "sha1-52E1Lr4K9TfUu3Vam53Evj3379I="
   "resolved" "https://registry.npm.taobao.org/vuex/download/vuex-3.0.1.tgz"
   "version" "3.0.1"
+
+"watchpack-chokidar2@^2.0.0":
+  "integrity" "sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww=="
+  "resolved" "https://registry.npmjs.org/watchpack-chokidar2/-/watchpack-chokidar2-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "chokidar" "^2.1.8"
 
 "watchpack@^1.5.0":
   "integrity" "sha1-wC5NTUmRPD5+EiwzJTZa+dMx6ao="
