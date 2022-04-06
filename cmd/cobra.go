@@ -1,10 +1,12 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
 	"os"
 	"zeus/cmd/api"
+	"zeus/cmd/auths"
 	"zeus/cmd/migrate"
+
+	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
@@ -19,6 +21,7 @@ var rootCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(api.StartCmd)
 	rootCmd.AddCommand(migrate.MigrateCmd)
+	rootCmd.AddCommand(auths.AuthCmd)
 }
 
 //Execute : run commands

@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/spf13/viper"
 	"math"
 	"strconv"
 	"strings"
@@ -20,6 +19,8 @@ import (
 	"zeus/pkg/api/log"
 	"zeus/pkg/api/model"
 	"zeus/pkg/api/utils"
+
+	"github.com/spf13/viper"
 )
 
 const pwHashBytes = 64
@@ -234,23 +235,24 @@ func (u UserService) VerifyAndReturnUserInfo(loginDto dto.LoginDto) (bool, error
 	locKey := fmt.Sprintf(viper.GetString("login.failRecordKey"), userModel.Username)
 	if login.VerifyPassword(loginDto.Password, userModel) {
 		// destroy time records
-		_ = cache.Del(locKey)
-		if u.VerifySmsCodeIfNeeded(userModel) {
-			if err := u.Verify2Fa(loginDto.Code, userModel); err != nil {
-				return false, errInvalidCode, model.User{}
-			}
-		}
+		//_ = cache.Del(locKey)
+		// if u.VerifySmsCodeIfNeeded(userModel) {
+		// 	if err := u.Verify2Fa(loginDto.Code, userModel); err != nil {
+		// 		return false, errInvalidCode, model.User{}
+		// 	}
+		// }
+
 		// update last login time
 		// 判断是否超过了设置的天数间隔，超过再更新登录时间
-		// 这样将实现强制在间隔时间内进行2fa验证
-		if viper.GetBool("security.2fa.enabled") {
-			period := u.GetNoSmsCodeDurationDay()
-			if time.Now().Sub(userModel.LastLoginTime).Seconds() >= float64(24*3600*period) {
-				u.UpdateLoginTime(dto.UserEditDto{Id: userModel.Id})
-			}
-		} else {
-			u.UpdateLoginTime(dto.UserEditDto{Id: userModel.Id})
-		}
+		// // 这样将实现强制在间隔时间内进行2fa验证
+		// if viper.GetBool("security.2fa.enabled") {
+		// 	period := u.GetNoSmsCodeDurationDay()
+		// 	if time.Now().Sub(userModel.LastLoginTime).Seconds() >= float64(24*3600*period) {
+		// 		u.UpdateLoginTime(dto.UserEditDto{Id: userModel.Id})
+		// 	}
+		// } else {
+		u.UpdateLoginTime(dto.UserEditDto{Id: userModel.Id})
+		//}
 		return true, nil, userModel
 	} else {
 		if viper.GetBool("security.2fa.enabled") {

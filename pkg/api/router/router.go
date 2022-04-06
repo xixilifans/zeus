@@ -1,15 +1,16 @@
 package router
 
 import (
-	"github.com/appleboy/gin-jwt/v2"
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
-	"github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
 	_ "zeus/docs"
 	"zeus/pkg/api/controllers"
 	"zeus/pkg/api/domain/account"
 	"zeus/pkg/api/middleware"
+
+	jwt "github.com/appleboy/gin-jwt/v2"
+	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 var jwtAuth *jwt.GinJWTMiddleware
@@ -149,12 +150,12 @@ func SetUp(e *gin.Engine, cors bool) {
 	v1.GET("/log/operations/:id", logController.OperationLogDetail)
 
 	// Ldap & email setting
-	settingController := controllers.SettingController{}
-	v1.GET("/setting/ldap", settingController.LdapList)
-	v1.POST("/setting/ldap", settingController.LdapUpdate)
-	v1.GET("/setting/email", settingController.EmailList)
-	v1.POST("/setting/email", settingController.EmailUpdate)
-	v1.GET("/setting/sync/dingtalk", settingController.SyncDingtalk)
+	// settingController := controllers.SettingController{}
+	// v1.GET("/setting/ldap", settingController.LdapList)
+	// v1.POST("/setting/ldap", settingController.LdapUpdate)
+	// v1.GET("/setting/email", settingController.EmailList)
+	// v1.POST("/setting/email", settingController.EmailUpdate)
+	// v1.GET("/setting/sync/dingtalk", settingController.SyncDingtalk)
 
 	// Sync actions
 	syncController := controllers.SyncController{}

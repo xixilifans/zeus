@@ -2,11 +2,12 @@ package middleware
 
 import (
 	"fmt"
-	"github.com/beego/i18n"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
 	"zeus/pkg/api/log"
+
+	"github.com/beego/i18n"
+	"github.com/gin-gonic/gin"
 )
 
 // Ignored permissions
@@ -24,7 +25,11 @@ func PermCheck(c *gin.Context) {
 		c.Next()
 		return
 	}
-	if !accountService.CheckPermission(uid, "root", route) {
+	if accountService.CheckPermission(uid, "root", route) {
+		log.Info(fmt.Sprintf("Pass permission check for %s", route))
+	} else if accountService.CheckPermission(uid, "gm", route) {
+		log.Info(fmt.Sprintf("Pass permission check for %s", route))
+	} else {
 		log.Warn(fmt.Sprintf("No permission for %s", route))
 		c.JSON(http.StatusOK, gin.H{
 			"code": 403,
@@ -32,8 +37,6 @@ func PermCheck(c *gin.Context) {
 		})
 		c.Abort()
 		return
-	} else {
-		log.Info(fmt.Sprintf("Pass permission check for %s", route))
 	}
 	c.Next()
 }

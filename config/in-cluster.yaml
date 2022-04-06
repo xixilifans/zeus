@@ -33,7 +33,7 @@ database:
     charset: utf8
     host: zeus_mysql:3306
     name: zeus
-    password: zeusadmin@xaer
+    password: 123456
     pool:
       max: 20
       min: 5

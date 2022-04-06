@@ -2,13 +2,14 @@ package dao
 
 import (
 	"fmt"
+	"zeus/pkg/api/domain/search/adapter/statement"
+	"zeus/pkg/api/log"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/spf13/viper"
-	"zeus/pkg/api/domain/search/adapter/statement"
-	"zeus/pkg/api/log"
 )
 
 var (
@@ -35,9 +36,13 @@ func Setup() {
 		}
 	case DRIVER_MYSQL:
 		host := viper.GetString("database.mysql.host")
+
 		user := viper.GetString("database.mysql.user")
+
 		password := viper.GetString("database.mysql.password")
+
 		name := viper.GetString("database.mysql.name")
+
 		charset := viper.GetString("database.mysql.charset")
 
 		dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local", user, password, host, name, charset)
