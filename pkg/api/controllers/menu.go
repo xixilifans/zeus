@@ -1,9 +1,11 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
 	"zeus/pkg/api/dto"
 	"zeus/pkg/api/service"
+
+	"github.com/gin-gonic/gin"
 )
 
 var menuService = service.MenuService{}
@@ -63,6 +65,7 @@ func (m *MenuController) List(c *gin.Context) {
 func (m *MenuController) Create(c *gin.Context) {
 	var menuDto dto.MenuCreateDto
 	if m.BindAndValidate(c, &menuDto) {
+		fmt.Println("menuDto..", menuDto)
 		menu := menuService.Create(menuDto)
 		if menu.Id > 0 {
 		}

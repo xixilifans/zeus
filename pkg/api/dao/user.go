@@ -1,10 +1,12 @@
 package dao
 
 import (
-	"github.com/jinzhu/gorm"
+	"fmt"
 	"zeus/pkg/api/domain/search/parser"
 	"zeus/pkg/api/dto"
 	"zeus/pkg/api/model"
+
+	"github.com/jinzhu/gorm"
 )
 
 type User struct {
@@ -16,14 +18,18 @@ func (User) List(listDto dto.GeneralListDto, cols string) ([]model.User, int64) 
 	var total int64
 	db := GetDb()
 	ps, err := parser.Parse(listDto.Q)
+
+	fmt.Println("ps", ps, err)
 	if err == nil {
 		for _, sv := range searchAdapter.GenerateConditions(ps, dto.UserListSearchMapping) {
+			fmt.Println("sv", sv)
 			db = db.Where(sv[0], sv[1:]...)
 		}
 	}
 	if len(cols) > 0 {
 		db = db.Select(cols)
 	}
+	fmt.Println("fffff", listDto)
 	db.Preload("Department"). /*Preload("Roles")*/ Offset(listDto.Skip).Limit(listDto.Limit).Find(&users)
 	db.Model(&model.User{}).Count(&total)
 	return users, total

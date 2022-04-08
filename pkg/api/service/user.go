@@ -55,6 +55,7 @@ func (UserService) InfoOfId(dto dto.GeneralGetDto) model.User {
 func (UserService) List(ctx context.Context, gdto dto.GeneralListDto) ([]model.User, int64) {
 	cols := "*"
 	gdto.Q, cols = dataPermService.DataPermFilter(ctx, "users", gdto)
+	fmt.Println("fiffffff", gdto.Q, cols)
 	return userDao.List(gdto, cols)
 }
 

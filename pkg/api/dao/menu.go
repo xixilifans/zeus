@@ -2,10 +2,11 @@ package dao
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"strings"
 	"zeus/pkg/api/dto"
 	"zeus/pkg/api/model"
+
+	"github.com/jinzhu/gorm"
 )
 
 type Menu struct {
@@ -20,7 +21,7 @@ func (m Menu) List(treeDto dto.GeneralTreeDto) ([]model.Menu, int64) {
 	for sk, sv := range dto.TransformSearch(treeDto.Q, dto.MenuListSearchMapping) {
 		db = db.Where(fmt.Sprintf("%s = ?", sk), sv)
 	}
-	db.Preload("Domain").Order("order_num asc").Find(&menus)
+	db.Preload("Domain").Order("name asc").Find(&menus)
 	db.Model(&model.Menu{}).Count(&total)
 	return menus, total
 }
